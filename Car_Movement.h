@@ -6,6 +6,7 @@
 #define MOTOR_M3_RATIO 1.0
 #define MOTOR_M4_RATIO 1.0
 
+#define ACCELERATION_TIME 100.0
 
 
 void Drive_Car(float M1_Power, float M2_Power, float M3_Power, float M4_Power); // Equivelant to Motor_M_Move in original code, but takes into account motor power ratios.

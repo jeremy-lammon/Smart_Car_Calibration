@@ -28,17 +28,13 @@ void setup() {
 
 void loop() {
   if (IrReceiver.decode()) {
-    if (At_Home == true) {
-      Move_Car(Motor_Power * -1, Current_Drive_Length);
-      At_Home = false;
-    }
-    else if (At_Home == false) {
-      Move_Car(Motor_Power, Current_Drive_Length);
-      At_Home = true;
-      Current_Drive_Length += BASE_DRIVE_LENGTH;
+    Move_Car(At_Home ? Motor_Power * -1 : Motor_Power, Current_Drive_Length);
 
+    At_Home = !At_Home;
+    if (At_Home == true) {
+      Current_Drive_Length += BASE_DRIVE_LENGTH;
     }
-    delay(100);
+    
     IrReceiver.resume();
   }
 }
