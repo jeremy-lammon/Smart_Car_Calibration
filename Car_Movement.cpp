@@ -20,25 +20,25 @@ void Accelerate_Car(float Current_Power, float Desired_Power, float Duration) {
   const float Step_Power_Change = ((Desired_Power - Current_Power) / 10.0);
   float Step_Power = Current_Power;
 
-  Serial.println("| STARTING (DE)ACCELERATION FROM POWER " + String(Current_Power) + " TO POWER " + String(Desired_Power) + " OVER " + String(Duration) + " MILLISECONDS WITH " + String(Step_Power_Change) + " POWER INCREMENTS.");
+  Serial.println("STARTING (DE)ACCELERATION FROM POWER " + String(Current_Power) + " TO POWER " + String(Desired_Power) + " OVER " + String(Duration) + " MILLISECONDS WITH " + String(Step_Power_Change) + " POWER INCREMENTS.");
   for (int i = 0; i < 10; i++) {
     Step_Power += Step_Power_Change;
     Drive_Car_Straight(Step_Power);
     delay(Step_Delay);
   }
 
-  Serial.println("| (DE)ACCELERATION COMPLETED.");
+  Serial.println("(DE)ACCELERATION COMPLETED.");
   return;
 }
 
 // Power is an integer between -100 and 100, with Drive_Length being in milliseconds. 
 //Will move the car in that power amount, for that time, while also taking into account for motor steering correction ratios.
-void Move_Car(float Power, float Drive_Length) {
-  Serial.println("| MOVING CAR AT POWER " + String(Power) + " FOR " + String(Drive_Length) + " MILLISECONDS.");
+void Move_Car_Straight(float Power, float Drive_Length) {
+  Serial.println("MOVING CAR AT POWER " + String(Power) + " FOR " + String(Drive_Length) + " MILLISECONDS.");
   //Accelerate_Car(Power / 2.0, Power, ACCELERATION_TIME);
 
   float Drive_Time = Drive_Length; //- (ACCELERATION_TIME * 2.0);
-  Serial.println("| MOVING AT " + String(Power) + " FOR " + String(Drive_Time) + " MILLISECONDS.");
+  Serial.println("MOVING AT " + String(Power) + " FOR " + String(Drive_Time) + " MILLISECONDS.");
   Drive_Car_Straight(Power);
   delay(Drive_Time);
 

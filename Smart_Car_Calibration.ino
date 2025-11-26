@@ -28,7 +28,7 @@ void setup() {
 
 void loop() {
   if (IrReceiver.decode()) {
-    Move_Car(At_Home ? Motor_Power * -1 : Motor_Power, Current_Drive_Length);
+    Move_Car_Straight(At_Home ? Motor_Power * -1 : Motor_Power, Current_Drive_Length);
 
     At_Home = !At_Home;
     if (At_Home == true) {
