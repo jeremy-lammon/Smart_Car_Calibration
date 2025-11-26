@@ -31,9 +31,13 @@ void Accelerate_Car(float Current_Power, float Desired_Power, float Duration) {
   return;
 }
 
+
+
+
+
 // Power is an integer between -100 and 100, with Drive_Length being in milliseconds. 
 //Will move the car in that power amount, for that time, while also taking into account for motor steering correction ratios.
-void Move_Car_Straight(float Power, float Drive_Length) {
+void Move_Car(float Power, float Drive_Length) {
   Serial.println("MOVING CAR AT POWER " + String(Power) + " FOR " + String(Drive_Length) + " MILLISECONDS.");
   //Accelerate_Car(Power / 2.0, Power, ACCELERATION_TIME);
 
@@ -44,5 +48,16 @@ void Move_Car_Straight(float Power, float Drive_Length) {
 
   //Accelerate_Car(Power, 0, ACCELERATION_TIME);
   Drive_Car(0,0,0,0);
+  return;
+}
+
+//Same as Move_Car_Straight, but solely for turning in the left direction at a certain power for certain length.
+//Use Positive Powers for turning Left, and Negative Powers for Turning Right
+void Turn_Car(float Power, float Duration) {
+  Serial.println("TURNING CAR LEFT AT POWER " + String(Power) + " FOR " + String(Duration) + " MILLISECONDS.");
+  Drive_Car(-Power, -Power, Power, Power);
+  delay(Duration);
+  Drive_Car(0,0,0,0);
+  Serial.println("COMPLETED TURNING CAR. RETURNING.");
   return;
 }

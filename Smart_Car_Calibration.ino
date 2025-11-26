@@ -7,11 +7,14 @@
 #define ENABLE_LED_FEEDBACK true
 #define DISABLE_LED_FEEDBACK false
 
+
+
+// CONFIG VARIABLES
 #define BASE_DRIVE_LENGTH 500.0
 #define INCREMENT_AMOUNT 250.0
 
-// CONFIG VARIABLES
-float Motor_Power = 25; // Int between 0 & 100 to define the power of the motors
+int Mode = 1; // 0 = Traveling Forward/Backward; 1 = Turning Left & Right;
+float Motor_Power = 50; // Int between 0 & 100 to define the power of the motors
 float Current_Drive_Length; // Runtime Variable to define the current length to wait on the current loop.
 bool At_Home = true;
 
@@ -28,7 +31,13 @@ void setup() {
 
 void loop() {
   if (IrReceiver.decode()) {
-    Move_Car_Straight(At_Home ? Motor_Power * -1 : Motor_Power, Current_Drive_Length);
+    
+    if (Mode == 0) {
+      Move_Car(At_Home ? -Motor_Power : Motor_Power, Current_Drive_Length);
+    }
+    else {
+      Turn_Car(At_Home ? -Motor_Power : Motor_Power, Current_Drive_Length);
+    }
 
     At_Home = !At_Home;
     if (At_Home == true) {
