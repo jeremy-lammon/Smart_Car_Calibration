@@ -34,18 +34,15 @@ void Accelerate_Car(float Current_Power, float Desired_Power, float Duration) {
 // Power is an integer between -100 and 100, with Drive_Length being in milliseconds. 
 //Will move the car in that power amount, for that time, while also taking into account for motor steering correction ratios.
 void Move_Car(float Power, float Drive_Length) {
-  Serial.println("|- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - |");
   Serial.println("| MOVING CAR AT POWER " + String(Power) + " FOR " + String(Drive_Length) + " MILLISECONDS.");
-  //float Acceleration_Length = Drive_Length/ 10.0;
-  Accelerate_Car(Power / 2.0, Power, ACCELERATION_TIME);
+  //Accelerate_Car(Power / 2.0, Power, ACCELERATION_TIME);
 
-  float Drive_Time = Drive_Length - (ACCELERATION_TIME * 2);
+  float Drive_Time = Drive_Length; //- (ACCELERATION_TIME * 2.0);
   Serial.println("| MOVING AT " + String(Power) + " FOR " + String(Drive_Time) + " MILLISECONDS.");
   Drive_Car_Straight(Power);
   delay(Drive_Time);
 
-  Accelerate_Car(Power, Power / 2.0, ACCELERATION_TIME);
+  //Accelerate_Car(Power, 0, ACCELERATION_TIME);
   Drive_Car(0,0,0,0);
-  Serial.println("|- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - |");
   return;
 }

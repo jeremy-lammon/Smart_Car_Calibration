@@ -7,12 +7,12 @@
 #define ENABLE_LED_FEEDBACK true
 #define DISABLE_LED_FEEDBACK false
 
-#define BASE_DRIVE_LENGTH 1000.0
-
+#define BASE_DRIVE_LENGTH 500.0
+#define INCREMENT_AMOUNT 250.0
 
 // CONFIG VARIABLES
-float Motor_Power = 50; // Int between 0 & 100 to define the power of the motors
-float Current_Drive_Length = BASE_DRIVE_LENGTH; // Runtime Variable to define the current length to wait on the current loop.
+float Motor_Power = 25; // Int between 0 & 100 to define the power of the motors
+float Current_Drive_Length; // Runtime Variable to define the current length to wait on the current loop.
 bool At_Home = true;
 
 
@@ -32,7 +32,7 @@ void loop() {
 
     At_Home = !At_Home;
     if (At_Home == true) {
-      Current_Drive_Length += BASE_DRIVE_LENGTH;
+      Current_Drive_Length += INCREMENT_AMOUNT;
     }
     
     IrReceiver.resume();
