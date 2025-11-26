@@ -14,7 +14,7 @@
 #define INCREMENT_AMOUNT 250.0
 
 int Mode = 1; // 0 = Traveling Forward/Backward; 1 = Turning Left & Right;
-float Motor_Power = 50; // Int between 0 & 100 to define the power of the motors
+float Motor_Power = 25; // Int between 0 & 100 to define the power of the motors
 float Current_Drive_Length; // Runtime Variable to define the current length to wait on the current loop.
 bool At_Home = true;
 
